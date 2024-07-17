@@ -14,12 +14,10 @@ public class GetScreenShot {
 		
 		TakesScreenshot ts =(TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		String dest = System.getProperty("user.dir")+"\\screenshot\\"+screenShot+".png";
+		String dest = System.getProperty("user.dir")+"\\screenshots\\"+screenShot+".png";
 		File destination = new File(dest);
 		FileUtils.copyFile(source, destination);
 		return dest;
-		
-		
 		
 		
 	}

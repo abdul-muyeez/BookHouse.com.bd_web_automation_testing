@@ -11,13 +11,14 @@ public class LoginTest extends CommonMethods{
 	public void openurl() throws InterruptedException {
 		
 		PageDriver.getCurrentDriver().get(url);
-		timeout();
+	
 	}
 @Test
 	public void loginIntoShop() {
 		
 		LoginPage loginPage = new LoginPage(null);
 		loginPage.login();
+	
 		
 	}
 }
