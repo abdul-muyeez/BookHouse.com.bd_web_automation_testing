@@ -8,5 +8,5 @@ This project automates the login process on BookHouse.com.bd using Selenium WebD
 Clone the project
 
 ```bash
-  [git clone https://link-to-project](https://github.com/abdul-muyeez/BookHouse.com.bd_web_automation_testing.git)
+  git clone https://link-to-project](https://github.com/abdul-muyeez/BookHouse.com.bd_web_automation_testing.git)
 ```
