@@ -6,11 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
-
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import webauto.bd.utilities.GetScreenShot;
-
 import webauto.bd.drivers.PageDriver;
 import webauto.bd.utilities.CommonMethods;
 
@@ -22,12 +20,13 @@ public class LoginPage extends CommonMethods {
 	public LoginPage(ExtentTest test) {
 		
 		PageFactory.initElements(PageDriver.getCurrentDriver(), this);
+		this.test= test;
 	}
 	
 	@FindBys({@FindBy (xpath="//input[@id='email']")})
 	WebElement useremail;
 	
-	@FindBys({@FindBy (xpath="//input[@id='c-password'")})
+	@FindBys({@FindBy (xpath="//input[@id='c-password']")})
 	WebElement password;
 
 	@FindBys({@FindBy (xpath="//button[contains(text(),'login')]"),
@@ -60,18 +59,20 @@ public class LoginPage extends CommonMethods {
 		PageDriver.getCurrentDriver().quit();
 	}
 	
-	public void login () {
+	public void login () throws IOException {
 		
 		try {
 			test.info("Please enter email address");
 			if(useremail.isDisplayed()) {
 				useremail.sendKeys("muyeezrj@gmail.com");
+				passCase("You have successfully entered email");
 				timeout(2000);
 				
 				try {
 					test.info("Please enter passwor");
 					if(password.isDisplayed()) {
 						password.sendKeys("astapasta");
+						passCase("You have successfully entered password");
 						timeout(2000);
 						
 						try {
@@ -79,24 +80,25 @@ public class LoginPage extends CommonMethods {
 							if(signin.isDisplayed()) {
 							signin.click();
 							timeout(10000);
+							passCaseWithSC("You have successfully clicked Login", "login_pass");
 							}
 						
 							
 						} catch (Exception e) {
-							// TODO: handle exception
+							failCase("Login button locator not found", "login_fail");
 							System.out.println("User signin locator was not found");
 						}		
 					}
 				
 				} catch (Exception e) {
-					// TODO: handle exception
+					failCase("Password locator not found", "password_fail");
 					System.out.println("User password locator was not found");
 				}
 			
 			} 
 			
 		} catch (Exception e) {
-			//TODO: Handle exception
+			failCase("email locator not found", "email_fail");
 			System.out.println("User email locator was not found");
 		}
 		
